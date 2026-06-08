@@ -1,6 +1,6 @@
 """
 Cloudwatch logs are critical for this project, and will form the basis
-of our application of compression to AWS.
+of our application of spectral_compression to AWS.
 
 Design:
 -------
@@ -34,7 +34,7 @@ class CloudWatchLogsSimulated(object):
 
     def get_data(self) -> DataFrame[NumericData]:
 
-        time_index = pd.date_range(start="2025-06-07 00:00:00",
+        time_index = pd.date_range(start="2026-06-01 00:00:00",
                                    end="2026-06-07 00:00:00",
                                    freq="s")
 

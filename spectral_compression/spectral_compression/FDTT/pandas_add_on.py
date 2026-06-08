@@ -7,7 +7,7 @@ are based on the interpolation of particular points in the dataframe.
 
 import pandas as pd
 import numpy as np
-from variational_framework import VariationalFramework, IntegralConstraintElement, IntegralConstraint
+from .variational_framework import VariationalFramework, IntegralConstraintElement, IntegralConstraint
 from datetime import datetime, timedelta
 import calendar
 import math
@@ -318,6 +318,9 @@ def solve_dataframe(df: pd.DataFrame,
         df["Period_End_Date"] = df["Date"]
         global_start_date = df["Period_Start_Date"].min()
         global_end_date = df["Period_End_Date"].max()
+
+    elif inferred_frequency == "min":
+        return NotImplementedError("No implementation for Min Frequency")
     else:
         raise NotImplementedError(f"Cannot currently handle time frequency provided by the inferred frequency "
                                   f"identifier {inferred_frequency}")

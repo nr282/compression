@@ -1,22 +1,22 @@
 """
 Decompression algorithms are required.
 
-Module abstracts the compression algorithms.
+Module abstracts the spectral_compression algorithms.
 
 Compression Algorithms can include:
     1. Deflate
     2. LZ4
-    3. SpecTech
+    3. Spectral Compression
 
 
-
+TODO: Very close to finishing this project
 
 """
 
-
-import datetime
 from typing import Protocol
+
 import pandas as pd
+from spectral_compression.spectral_compression.FDTT import pandas_add_on
 
 class Compression(Protocol):
 
@@ -71,13 +71,32 @@ class NoCompression(object):
 class SpectralCompression(object):
 
     def __init__(self, compression_algo: Compression):
-        self.compression_algo = compression_algo
+        self.standard_compression_algo = compression_algo
+
+
+    def _apply_spectral_compression(self):
+        pass
 
     def compress(self, data: pd.DataFrame) -> str:
-        pass
+        """
+        Compression involves averaging and then applying the standard compression algorithm.
+
+        """
+
+        data.set_index('Date', inplace=True)
+        data = data.resample('1min').sum().reset_index()
+        path = self.standard_compression_algo.compress(data)
+        return path
+
 
     def decompress(self, path: str):
-        pass
+
+        data = pd.read_csv(path, parse_dates=['Date'], dtype={'Date': str})
+        result = pandas_add_on.solve_pandas_series(data)
+
+
+        import pdb
+        pdb.set_trace()
 
     def get_algo_name(self) -> str:
         return "spectral_compression"

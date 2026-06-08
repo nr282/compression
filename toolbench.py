@@ -1,5 +1,5 @@
 """
-The toolbench module will handle the benchmarking of the compression algorithms.
+The toolbench module will handle the benchmarking of the spectral_compression algorithms.
 
 As was stated previously, the key metrics to measure are:
     1. Speed
@@ -26,11 +26,11 @@ def toolbench(metric_logger: MetricLogger,
               compression_algo: List[Compression]
               ):
     """
-    Toolbench class tests the compression and decompression algorithms on cloudwatch logs
+    Toolbench class tests the spectral_compression and decompression algorithms on cloudwatch logs
     and keeps tracks of metrics.
 
     """
-
+    print("Develop Cloud Watch Logs...")
     cloudwatch_logs_simulated = cloudwatch_logs.get_data()
     for algo in compression_algo:
         algo_name = algo.get_algo_name()
@@ -56,14 +56,13 @@ if __name__ == '__main__':
 
     metric_logger = MetricLogger()
     cloudwatch_logs = CloudWatchLogsSimulated()
-    spectral_compression_algo = SpectralCompression()
     gzip_compression = GzipCompression()
     no_compression = NoCompression()
-
+    spectral_compression_algo = SpectralCompression(no_compression)
 
     toolbench(metric_logger,
               cloudwatch_logs,
-              [gzip_compression, no_compression])
+              [gzip_compression, no_compression, spectral_compression_algo])
 
 
 

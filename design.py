@@ -32,7 +32,7 @@ The design of this codebase requires a few things:
 
 
 Toolbench
-    - Takes in a compression algorithm (which includes the decompression)
+    - Takes in a spectral_compression algorithm (which includes the decompression)
     - Takes in the cloud watch logs with the Protocol
     - Compares the relevant characteristics including:
         - Speed, Compression Size, Accuracy (ie Error)
