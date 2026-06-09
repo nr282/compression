@@ -15,3 +15,8 @@
 ### Our solution combines Calculus of Variations and GZIP. 
 
 ### With certain levels  of allowed error. 
+
+
+## Spectral Compression: 54519
+## No Compression: 11923235
+## GZIP Compression: 3044221

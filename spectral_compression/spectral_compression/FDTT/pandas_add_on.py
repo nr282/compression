@@ -320,7 +320,7 @@ def solve_dataframe(df: pd.DataFrame,
         global_end_date = df["Period_End_Date"].max()
 
     elif inferred_frequency == "min":
-        raise NotImplementedError("No implementation for Min Frequency")
+        raise NotImplementedError("No implementation minutes for pandas series")
     else:
         raise NotImplementedError(f"Cannot currently handle time frequency provided by the inferred frequency "
                                   f"identifier {inferred_frequency}")

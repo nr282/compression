@@ -54,11 +54,13 @@ def toolbench(metric_logger: MetricLogger,
 
 if __name__ == '__main__':
 
+
+
     metric_logger = MetricLogger()
     cloudwatch_logs = CloudWatchLogsSimulated()
     gzip_compression = GzipCompression()
     no_compression = NoCompression()
-    spectral_compression_algo = SpectralCompression(no_compression)
+    spectral_compression_algo = SpectralCompression(gzip_compression)
 
     toolbench(metric_logger,
               cloudwatch_logs,
